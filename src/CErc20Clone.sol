@@ -64,9 +64,21 @@ contract CErc20Clone {
 
     function exchangeRateStored() public view returns (uint256) {
         if (totalSupply == 0) {
+            console2.log(
+                "[CErc20Clone.exchangeRateStored] Initial Exchange Rate",
+                initialExchangeRateMantissa
+            );
             return initialExchangeRateMantissa;
         } else {
             uint256 totalCash = underlying.balanceOf(address(this));
+            console2.log(
+                "[CErc20Clone.exchangeRateStored] Total Cash",
+                totalCash
+            );
+            console2.log(
+                "[CErc20Clone.exchangeRateStored] Total Supply",
+                totalSupply
+            );
             return (totalCash * 1e18) / totalSupply;
         }
     }
